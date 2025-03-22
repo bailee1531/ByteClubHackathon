@@ -8,7 +8,6 @@ def get_data():
     senseData.append(datetime.now())
     senseData.append(sense.get_temperature())
     senseData.append(sense.get_pressure())
-    senseData.append(sense.get_humidity())
     return senseData
 
 # Creates the event listener for the joystick
@@ -22,7 +21,7 @@ if event.action == 'pressed' and event.direction == 'down':
     # Creates the CSV file with data
     with open('data.csv', 'w', newline='') as f:
         dataWriter = writer(f)
-        dataWriter.writerow(['DateTime', 'Temperature', 'Pressure', 'Humidity'])    # Sets column headers
+        dataWriter.writerow(['DateTime', 'Temperature', 'Pressure'])    # Sets column headers
 
         # Gets the data and writes it to the csv file
         while logData:
