@@ -19,14 +19,22 @@ async function getData() {
 }
 */
 
+
+// grabbing PDF data from : https://www.weather.gov/wrh/Climate?wfo=hun
+
+// grabbing weather conditions from : https://www.ncdc.noaa.gov/stormevents/listevents.jsp?eventType=ALL&beginDate_mm=01&beginDate_dd=01&beginDate_yyyy=2023&endDate_mm=12&endDate_dd=31&endDate_yyyy=2024&county=MADISON%3A89&hailfilter=0.00&tornfilter=0&windfilter=000&sort=DT&submitbutton=Search&statefips=1%2CALABAMA
 import fs from 'fs';
 import fetch from 'node-fetch';
 
 const WEATHER_ID = "0tsop3f16nvp8";
 const BASE_URL = `https://api.georobotix.io/ogc/t18/api/datastreams/${WEATHER_ID}/observations`;
 
-const START_DATE = "2024-03-18T00:00:00Z";
-const END_DATE = "2024-03-20T23:59:59Z";
+const START_DATE = "2023-01-01T00:00:00Z";
+const END_DATE = "2024-12-31T23:59:59Z";
+// we want to grab data every 60 minutes instead of every minute 
+
+
+
 
 const PAGE_LIMIT = 100; 
 const MAX_PAGES = 10; //right now we are grabbing 1000 records from the start and end date set
@@ -34,6 +42,7 @@ const MAX_PAGES = 10; //right now we are grabbing 1000 records from the start an
 async function getAllObservations() {
     let allObservations = [];
     let page = 1;
+
 
     while (page <= MAX_PAGES) {
         const url = `${BASE_URL}?startTime=${START_DATE}&endTime=${END_DATE}&page=${page}&limit=${PAGE_LIMIT}`;
