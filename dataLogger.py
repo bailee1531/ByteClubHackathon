@@ -24,11 +24,12 @@ if event.action == 'pressed' and event.direction == 'down':
         dataWriter = writer(f)
         dataWriter.writerow(['DateTime', 'Temperature', 'Pressure', 'Humidity'])    # Sets column headers
 
-# Stops data logging once the joystick is pressed upward
-if event.action == 'pressed' and event.direction == 'up':
-    logData = False
+        # Gets the data and writes it to the csv file
+        while logData:
+            data = get_data()
+            dataWriter.writerow(data)
 
-# Gets the data and writes it to the csv file
-while logData:
-    data = get_data()
-    dataWriter.writerow(data)
+            checkJoystick = sense.stick.get_events()
+            for e in checkJoystick:
+                if e.action == 'pressed' and e.direction == 'up':
+                    logData = False
