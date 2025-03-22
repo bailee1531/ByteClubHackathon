@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/bailee1531/ByteClubHackathon#readme",
   "dependencies": {
+    "cesium": "^1.127.0",
     "node-fetch": "^3.3.2"
   }
 }
