@@ -24,13 +24,11 @@ class ButtonsApp(App[str]):
         if str(event.button.name) == 'No Weather Events':
             log_sense_data(True)
         elif str(event.button.label) == 'Stop Event':
-            log_sim_data(False)
             event.button.label = event.button.name
+            log_sim_data(False, str(event.button.name))
         else:
-            log_sim_data(True)
             event.button.label = 'Stop Event'
-
+            log_sim_data(True, str(event.button.name))
 
 if __name__ == "__main__":
-    app = ButtonsApp()
-    print(app.run())
+    ButtonsApp().run()

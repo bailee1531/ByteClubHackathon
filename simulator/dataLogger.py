@@ -2,7 +2,7 @@ from simData import get_sim_data
 from sensorData import get_data
 from csv import writer
 
-def log_sense_data(flag):
+async def log_sense_data(flag):
     # Creates the CSV file with data
     with open('data.csv', 'w', newline='') as f:
         dataWriter = writer(f)
@@ -17,11 +17,11 @@ def log_sense_data(flag):
                 if e.action == 'pressed' and e.direction == 'up':
                     flag = False
 
-def log_sim_data(flag):
-    with open('data.csv', 'w', newline='') as f:
+async def log_sim_data(flag, weather):
+    with open('simdata.csv', 'w', newline='') as f:
         dataWriter = writer(f)
         dataWriter.writerow(['DateTime', 'Temperature', 'Pressure', 'Wind Speed'])    # Sets column headers
 
         while flag:
-            data = get_sim_data()
+            data = get_sim_data(weather)
             dataWriter.writerow(data)
