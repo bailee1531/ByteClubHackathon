@@ -4,34 +4,17 @@ import matplotlib.pyplot as plt
 filename = input("Enter the name of the file you want to create graphs for: ")
 
 df = pd.read_csv(filename)
-time = df["Phenomenon Time"]
-temp = df["Temperature (°C)"]
-pres = df["Pressure (hPa)"]
-wind_speed = df["Wind Speed (m/s)"]
-wind_dir = df["Wind Direction (°)"]
 
-fig, ax = plt.subplots(2, 2)
-ax[0,0].plot(time, temp, color='red', label='Temperature (°C)')
-ax[0,0].set_xlabel('Time')
-ax[0,0].set_ylabel('Temperature (°C)', color='red')
-ax[0,0].tick_params('y', colors='red')
+graph_num = int(input("# of graphs: "))
+fig, ax = plt.subplots(1, graph_num)
 
-ax[0,1].plot(time, pres, color='blue', label='Pressure (hPa)')
-ax[0,0].set_xlabel('Time')
-ax[0,1].set_ylabel('Pressure (hPa)', color='blue')
-ax[0,1].tick_params('y', colors='blue')
+for i in range(0, graph_num):
+    x_axis = input("Enter the x-axis: ")
+    y_axis = input("Enter the y-axis: ")
+    ax[i].plot(df[x_axis], df[y_axis])
+    ax[i].set_xlabel(x_axis)
+    ax[i].set_ylabel(y_axis)
+    ax[i].set_title(y_axis + " vs " + x_axis)
 
-
-ax[1,0].plot(time, wind_speed, color='green', label='Wind Speed (m/s)')
-ax[0,0].set_xlabel('Time')
-ax[1,0].set_ylabel('Wind Speed (m/s)', color='green')
-ax[1,0].tick_params('y', colors='green')
-
-
-ax[1,1].plot(time, wind_dir, color='orange', label='Wind Direction (°)')
-ax[0,0].set_xlabel('Time')
-ax[1,1].set_ylabel('Wind Direction (°)', color='orange')
-ax[1,1].tick_params('y', colors='orange')
-
-plt.title('Temperature vs Time')
+plt.grid(True)
 plt.show()
