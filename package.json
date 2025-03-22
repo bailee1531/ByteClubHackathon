@@ -1,0 +1,23 @@
+{
+  "name": "byteclubhackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetch_weather.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bailee1531/ByteClubHackathon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bailee1531/ByteClubHackathon/issues"
+  },
+  "homepage": "https://github.com/bailee1531/ByteClubHackathon#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
