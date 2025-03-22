@@ -1,0 +1,8 @@
+Button {
+    margin: 1 2;
+}
+
+Header {
+    height: 3;
+    dock: top;
+}
