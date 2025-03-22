@@ -27,7 +27,7 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 
 const WEATHER_ID = "0tsop3f16nvp8";
-const HURRICANE_ID = "tm3kijpkaoei6";
+const HURRICANE_ID = "4knoao0uki8bq";
 
 const START_DATE = "2023-01-01T00:00:00Z";
 const END_DATE = "2024-12-31T23:59:59Z";
@@ -114,24 +114,28 @@ async function getHurricaneData() {
                 break;
             }
 
+            // grab one observation and see what it looks like
+          //  console.log(data.items[0]);
+
+
             const observations = data.items.map(obs => ({
                 observationId: obs.id,
                 phenomenonTime: obs.phenomenonTime,
                 resultTime: obs.resultTime,
                 location: obs.result?.location 
-                    ? `${obs.result.location.lat}, ${obs.result.location.lon}` 
+                    ? `${obs.result.location.lat} + ${obs.result.location.lon}` 
                     : 'N/A',
-                airTemperature: obs.result?.TEMP_AIR_MEAN || 'N/A',
-                relativeHumidity: obs.result?.RH_MEAN || 'N/A',
-                airPressure: obs.result?.BARO_PRES_MEAN || 'N/A',
-                seawaterTemperature: obs.result?.TEMP_SBE37_MEAN || 'N/A',
-                windDirection: obs.result?.WIND_FROM_MEAN || 'N/A',
-                windSpeed: obs.result?.WIND_SPEED_MEAN || 'N/A',
-                seawaterSalinity: obs.result?.SAL_SBE37_MEAN || 'N/A',
-                waterCurrentSpeed: obs.result?.WATER_CURRENT_SPEED_MEAN || 'N/A',
-                waterCurrentDirection: obs.result?.WATER_CURRENT_DIRECTION_MEAN || 'N/A',
-                dominantWavePeriod: obs.result?.WAVE_DOMINANT_PERIOD || 'N/A',
-                significantWaveHeight: obs.result?.WAVE_SIGNIFICANT_HEIGHT || 'N/A'
+                airTemperature: obs.result?.TEMP_AIR_MEAN,
+                relativeHumidity: obs.result?.RH_MEAN,
+                airPressure: obs.result?.BARO_PRES_MEAN ,
+                seawaterTemperature: obs.result?.TEMP_SBE37_MEAN ,
+                windDirection: obs.result?.WIND_FROM_MEAN ,
+                windSpeed: obs.result?.WIND_SPEED_MEAN ,
+                seawaterSalinity: obs.result?.SAL_SBE37_MEAN ,
+                waterCurrentSpeed: obs.result?.WATER_CURRENT_SPEED_MEAN ,
+                waterCurrentDirection: obs.result?.WATER_CURRENT_DIRECTION_MEAN,
+                dominantWavePeriod: obs.result?.WAVE_DOMINANT_PERIOD ,
+                significantWaveHeight: obs.result?.WAVE_SIGNIFICANT_HEIGHT 
             }));
 
             allObservations.push(...observations);
