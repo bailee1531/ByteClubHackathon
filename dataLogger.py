@@ -4,10 +4,7 @@ from csv import writer
 
 ## Gets the data from the sense HAT and appends it to the list
 def get_data():
-    senseData = []
-    senseData.append(datetime.now())
-    senseData.append(sense.get_temperature())
-    senseData.append(sense.get_pressure())
+    senseData = [datetime.now(), sense.get_temperature(), sense.get_pressure(), sense.get_accelerometer()]
     return senseData
 
 # Creates the event listener for the joystick
@@ -21,7 +18,7 @@ if event.action == 'pressed' and event.direction == 'down':
     # Creates the CSV file with data
     with open('data.csv', 'w', newline='') as f:
         dataWriter = writer(f)
-        dataWriter.writerow(['DateTime', 'Temperature', 'Pressure'])    # Sets column headers
+        dataWriter.writerow(['DateTime', 'Temperature', 'Pressure', 'Wind Speed'])    # Sets column headers
 
         # Gets the data and writes it to the csv file
         while logData:
