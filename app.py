@@ -40,10 +40,17 @@ def monitor_weather(testing_mode=True):
         processed_data = process_data(api_data)
         prediction = model.predict(processed_data)[0]
 
-        if prediction == 1:
+        if prediction == 0:
+            print(f"Alert! Potential drought detected at {api_data.get('DATE')} — Take Precautions!")
+            return 0
+        elif prediction == 1:
             print(f"Alert! Potential hurricane detected at {api_data.get('DATE')} — Take Precautions!")
+            return 1
+        elif prediction == 2:
+            print(f"Alert! Potential tornado detected at {api_data.get('DATE')} — Take Precautions!")
+            return 2
         else:
-            print(f"No hurricane detected at {api_data.get('DATE')}")
+            print(f"Nothing detected at {api_data.get('DATE')}")
 
         # Wait for the set interval
         time.sleep(interval)
