@@ -45,3 +45,4 @@ if event.action == 'pressed' and event.direction == 'middle':
             # stops displaying
             elif e.action == 'pressed' and e.direction == 'middle':
                 displayResults = False
+                sense.clear()
