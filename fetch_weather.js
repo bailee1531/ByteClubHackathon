@@ -91,7 +91,7 @@ async function getAllObservations() {
 }
 
 
-//getAllObservations();
+getAllObservations();
 
 async function getHurricaneData() {
     let allObservations = [];
@@ -162,6 +162,4 @@ async function getHurricaneData() {
     }
 }
 
-//getHurricaneData();
-
-
+getHurricaneData();
