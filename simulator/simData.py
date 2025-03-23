@@ -1,9 +1,9 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from csv import writer
 import random
 
-def get_sim_data(weather):
-    simData = [datetime.now(), sim_temp(weather), sim_pressure(weather), sim_wind(weather)]
+def get_sim_data(weather, time):
+    simData = [time, sim_temp(weather), sim_pressure(weather), sim_wind(weather)]
     return simData
 
 def sim_temp(weather):
@@ -40,9 +40,11 @@ def sim_wind(weather):
     return random.uniform(low, high)
 
 def log_sim_data(weather):
+    time = datetime.now()
     with open('simdata.csv', 'a', newline='') as f:
         dataWriter = writer(f)
 
         for i in range(0, 50000):
-            data = get_sim_data(weather)
+            time += timedelta(seconds=1)
+            data = get_sim_data(weather, time)
             dataWriter.writerow(data)
