@@ -1,0 +1,10 @@
+Button {
+    margin: 1 2;
+    width: 30;
+    height: 10;
+}
+
+Header {
+    height: 3;
+    dock: top;
+}
