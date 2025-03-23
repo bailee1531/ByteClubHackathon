@@ -1,0 +1,6 @@
+DATE,Temperature,Atmospheric Pressure,Wind Speed,Wind Direction,Event Type Encoded
+14:06.8,30,1010,12,180,1
+14:07.8,40,1005,20,270,2
+14:08.8,35,1020,5,90,0
+14:09.8,25,980,60,360,1
+14:10.8,15,990,100,45,2

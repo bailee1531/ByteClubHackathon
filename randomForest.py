@@ -6,7 +6,7 @@ import pandas as pd
 import joblib
 
 
-data_cleaned = pd.read_csv('test.csv')
+data_cleaned = pd.read_csv('new_test.csv')
 
 x = data_cleaned.drop(['EVENT_TYPE', 'EVENT_TYPE_ENCODED', 'DATE'], axis=1)
 y = data_cleaned['EVENT_TYPE_ENCODED']

@@ -12,7 +12,7 @@ import time
 model = joblib.load('test_model.pkl')
 
 # Load data (simulating the API data with CSV)
-data = pd.read_csv('botts_hurricane_data_CLEAN.csv')
+data = pd.read_csv('Sample_Test_Data.csv')
 
 # Mock function to simulate fetching data as if it’s live data
 def fetch_weather_data():
@@ -40,7 +40,7 @@ def monitor_weather(testing_mode=True):
         processed_data = process_data(api_data)
         prediction = model.predict(processed_data)[0]
 
-        if prediction == 16:
+        if prediction == 1:
             print(f"Alert! Potential hurricane detected at {api_data.get('DATE')} — Take Precautions!")
         else:
             print(f"No hurricane detected at {api_data.get('DATE')}")
