@@ -3,9 +3,10 @@ import pandas as pd
 import numpy as np
 import random
 from app import monitor_weather
+
 ## Displays a message with the color that corresponds to the probability of that event
 def show_event(weather, probability):
-    sense.show_message(f'{weather}', back_colour=[int(colorRange.at[probability-1, 'Red']), int(colorRange.at[probability-1, 'Green']), int(colorRange.at[probability-1, 'Blue'])], text_colour=[255, 255, 255])
+    sense.show_message(f'{weather}', back_colour = probability, text_colour=[255, 255, 255])
 
 
 # dataframe of the probability values
@@ -22,7 +23,7 @@ colorRange.interpolate(method='linear', limit_direction='forward', axis=0, inpla
 sense = SenseHat()
 event = sense.stick.wait_for_event()    # waits for the first center press to start the display
 weatherEvents = ['Drought', 'Hurricane', 'Tornado']    # list of the events to cycle through
-i = 0   # starting event index
+colorMap = {'Drought': [0, 255, 0], 'Hurricane': [255, 0, 0], 'Tornado': [0, 0, 255]}
 
 # TO DO: Get probability of events
 event_return = monitor_weather(True) # currently just using random int
@@ -32,7 +33,7 @@ if event.action == 'pressed' and event.direction == 'middle':
 
     while displayResults:
         # TO DO: Initially display event with highest probability
-        show_event(weatherEvents[i], event_return)    # currently just displaying the first one
+        show_event(weatherEvents[event_return], colorMap.get(str(weatherEvents[event_return])))
 
         # determines which direction to cycle
         checkJoystick = sense.stick.get_events()
